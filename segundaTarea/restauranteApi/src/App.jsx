@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import MenuList from '../../../primeraTarea/primeraTareaInterfaces/src/components/MenuList';
-import MenuItem from '../../../primeraTarea/primeraTareaInterfaces/src/components/MenuItem';
+import MenuList from '../components/MenuList';
+import MenuItem from '../components/MenuItem';
 import './App.css'
 
 function App() {
