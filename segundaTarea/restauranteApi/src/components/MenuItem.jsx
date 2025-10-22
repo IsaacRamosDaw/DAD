@@ -1,4 +1,5 @@
-function MenuItem({ name, thumbnail }) {
+import { Link } from "react-router-dom";
+function MenuItem({ name, thumbnail, id }) {
   const precioAleatorio = () => Math.random() * (19 - 8) + 8; 
 
   return (
@@ -11,6 +12,7 @@ function MenuItem({ name, thumbnail }) {
       />
       <div className="food-card-content">
         <h3 className="food-title">{name}</h3>
+        <Link to={`/meal/${id}`}>Meal info</Link>
         <p className="food-price">{precioAleatorio().toFixed(2) + "€"}</p>
       </div>
     </div>
