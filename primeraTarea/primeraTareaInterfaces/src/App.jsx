@@ -6,10 +6,8 @@ function App() {
   const [pokemonData, setPokemonData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Función de alerta (NO usar alert() en React, se simula con console/modal)
   const alerta = (pokemon) => {
     console.log(`Clickaste el Pokémon: ${pokemon}`);
-    // Se mantiene alert() para este ejemplo, pero se recomienda un modal personalizado.
     alert(`Clickaste el Pokémon: ${pokemon}`);
   }
   
