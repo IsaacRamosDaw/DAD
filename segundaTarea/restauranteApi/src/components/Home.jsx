@@ -5,8 +5,9 @@ import MenuItem from './MenuItem';
 
 function Home(){
 
-    const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [data, setData] = useState([]);
+  
   const [loading, setLoading] = useState(true);
 
   const CATEGORIESAPI = "https://www.themealdb.com/api/json/v1/1/categories.php";
@@ -42,7 +43,7 @@ function Home(){
             foodThumbnail: meal.strMealThumb,
           }));
 
-          console.log(formattedFood)
+          // console.log(formattedFood)
 
           return {
             idCategory: cat.idCategory,
@@ -64,6 +65,8 @@ function Home(){
     
     obtenerComidas();
   }, [categories]);
+
+  console.log(data)
 
   const handleCategoryClick = (categoryName) => {
     const targetId = `category-${categoryName.toLowerCase().replace(/\s/g, '-')}`;

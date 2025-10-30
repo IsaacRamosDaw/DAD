@@ -1,116 +1,185 @@
-.gallery-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
-  gap: 1.5rem;
-  padding: 2rem;
-  min-height: 100vh;
-  background-color: #f9fafb;
+:root {
+  --primary-color: #1d4ed8; /* Azul simple */
+  --bg-color: #f8fafc; /* Gris muy claro */
+  --card-bg: #ffffff;
+  --text-dark: #1e293b;
+  --text-light: #64748b;
+}
+
+body {
+  margin: 0;
   font-family: 'Inter', sans-serif;
-  justify-items: center;
+  background-color: var(--bg-color);
+  color: var(--text-dark);
+  scroll-behavior: smooth; /* Para el scroll nativo */
 }
 
+.app-container {
+  min-height: 100vh;
+}
+
+/* ------------------- HEADER ------------------- */
 .app-header {
+  background-color: var(--primary-color);
+  color: var(--card-bg);
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-title {
+  font-size: 2rem;
+  font-weight: 700;
   text-align: center;
-  padding: 2rem 0;
 }
 
-.app-title {
-  font-size: 3rem;
-  font-weight: 900;
-  color: #dc2626;
-}
-
-.app-subtitle {
-  font-size: 1.25rem;
-  color: #6b7280;
-  margin-top: 0.5rem;
-}
-
-.pokemon-card {
-  background-color: white;
-  border-radius: 1rem;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  padding: 1rem;
-  width: 256px;
-  transform: scale(1);
-  transition: transform 0.5s ease-in-out, border-color 0.5s ease-in-out;
-  cursor: pointer;
+/* ------------------- MAIN LAYOUT ------------------- */
+.main-content {
+  width: 95%;
+  max-width: 1200px;
+  margin: 1.5rem auto;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  border: 4px solid #f3f4f6;
+  gap: 2rem;
 }
 
-.pokemon-card:hover {
-  transform: scale(1.05);
-  border-color: #3b82f6;
+/* Responsive layout: Sidebar y Contenido en paralelo para escritorio */
+@media (min-width: 1024px) {
+  .main-content {
+    flex-direction: row;
+    align-items: flex-start; /* Para que la sidebar no se estire */
+  }
 }
 
-.card-header-content {
+/* ------------------- SIDEBAR (MenuList) ------------------- */
+.menu-sidebar {
   width: 100%;
-  text-align: center;
+  background-color: var(--card-bg);
+  padding: 0.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  .menu-sidebar {
+    width: 250px; 
+    flex-shrink: 0; /* No encoger en desktop */
+    position: sticky; /* Sticky para mejor navegación */
+    top: 1.5rem;
+  }
+}
+
+.menu-nav {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.menu-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-dark);
   margin-bottom: 0.5rem;
 }
 
-.pokemon-id {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #6b7280;
-}
-
-.pokemon-name {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: #1f2937;
-  letter-spacing: 0.05em;
-  margin-top: 0.25rem;
-}
-
-.pokemon-image-container {
-  height: 10rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.pokemon-sprite {
-  width: 8rem;
-  height: 8rem;
-  object-fit: contain;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.placeholder-div {
-  width: 8rem;
-  height: 8rem;
-  background-color: #e5e7eb;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 9999px;
-}
-
-.placeholder-span {
-  color: #6b7280;
-  font-size: 0.875rem;
-}
-
-.card-button {
-  margin-top: 1rem;
+.category-button {
+  width: 100%;
+  text-align: left;
   padding: 0.5rem 1rem;
-  background-color: #3b82f6;
-  color: white;
-  font-weight: 600;
-  border-radius: 9999px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-  /* shadow-md */
-  transition: background-color 0.15s ease-in-out, transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  outline: none;
+  border-radius: 6px;
+  transition: background-color 0.2s;
   border: none;
+  cursor: pointer;
+  background-color: #f1f5f9; /* Gris claro */
+  color: var(--text-dark);
+  font-weight: 500;
 }
 
-.card-button:hover {
-  background-color: #2563eb;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-  /* hover:shadow-lg */
+.category-button:hover {
+  background-color: #e2e8f0; 
+}
+
+/* ------------------- FOOD ITEMS SECTION ------------------- */
+.food-main-section {
+  width: 100%;
+  flex-grow: 1; /* Ocupar el espacio restante en desktop */
+}
+
+.category-section {
+    margin-bottom: 3rem; /* Espaciado entre categorías */
+    padding-top: 2rem; /* Buffer superior para el scroll */
+    /* El margin-top negativo compensa el padding-top */
+    margin-top: -2rem; 
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0.5rem;
+}
+
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ------------------- FOOD CARD (MenuItem) ------------------- */
+.food-card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.food-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
+}
+
+.food-image {
+  width: 100%;
+  height: 200px; 
+  object-fit: cover;
+}
+
+.food-card-content {
+  padding: 1rem;
+}
+
+.food-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ------------------- LOADING / EMPTY STATES ------------------- */
+.loading-indicator {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-light);
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
